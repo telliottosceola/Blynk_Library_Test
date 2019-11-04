@@ -265,4 +265,3 @@ Indicator indicator;
   void indicator_init() {}
 
 #endif
-

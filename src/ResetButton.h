@@ -47,4 +47,3 @@ void button_init()
 #endif
   attachInterrupt(BOARD_BUTTON_PIN, button_change, CHANGE);
 }
-

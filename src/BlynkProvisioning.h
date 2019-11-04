@@ -9,7 +9,7 @@
  **************************************************************/
 
 #include "Settings.h"
-#include <BlynkSimpleEsp32.h>
+#include <BlynkSimpleEsp32_SSL.h>
 #include "BlynkState.h"
 #include "ConfigStore.h"
 #include "ResetButton.h"
@@ -19,7 +19,7 @@
 
 inline
 void BlynkState::set(State m) {
-  if (state != m) {
+  if (state != m && m < MODE_MAX_VALUE) {
     DEBUG_PRINT(String(StateStr[state]) + " => " + StateStr[m]);
     state = m;
   }
@@ -47,7 +47,7 @@ public:
 
   void run() {
     switch (BlynkState::get()) {
-    case MODE_WAIT_CONFIG:       
+    case MODE_WAIT_CONFIG:
     case MODE_CONFIGURING:       enterConfigMode();    break;
     case MODE_CONNECTING_NET:    enterConnectNet();    break;
     case MODE_CONNECTING_CLOUD:  enterConnectCloud();  break;
@@ -62,4 +62,3 @@ public:
 };
 
 Provisioning BlynkProvisioning;
-
